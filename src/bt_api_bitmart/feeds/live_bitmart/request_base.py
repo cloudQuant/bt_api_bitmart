@@ -7,9 +7,10 @@ import time
 from typing import Any
 from urllib.parse import urlencode
 
-from bt_api_base.feeds.feed import Feed
-from bt_api_base.feeds.capability import Capability
 from bt_api_base.containers.requestdatas.request_data import RequestData
+from bt_api_base.feeds.capability import Capability
+from bt_api_base.feeds.feed import Feed
+
 from bt_api_bitmart.exchange_data import BitmartExchangeDataSpot
 
 
@@ -230,7 +231,14 @@ class BitmartRequestData(Feed):
             return [], False
         return [data], True
 
-    def _get_kline(self, symbol: Any, period: Any = "1h", count: Any = 100, extra_data: Any = None, **kwargs: Any):
+    def _get_kline(
+        self,
+        symbol: Any,
+        period: Any = "1h",
+        count: Any = 100,
+        extra_data: Any = None,
+        **kwargs: Any,
+    ):
         bm_symbol = self._params.get_symbol(symbol)
         path = self._params.get_rest_path("get_kline")
         bm_step = self._params.get_period(period)
@@ -260,7 +268,9 @@ class BitmartRequestData(Feed):
             return data, True
         return [], False
 
-    def _get_trade_history(self, symbol: Any, count: Any = 50, extra_data: Any = None, **kwargs: Any):
+    def _get_trade_history(
+        self, symbol: Any, count: Any = 50, extra_data: Any = None, **kwargs: Any,
+    ):
         bm_symbol = self._params.get_symbol(symbol)
         path = self._params.get_rest_path("get_trades")
         params = {"symbol": bm_symbol, "limit": min(count, 50)}
@@ -286,8 +296,15 @@ class BitmartRequestData(Feed):
             return data, True
         return [], False
 
-    def _make_order(self, symbol: Any, size: Any, price: Any = None, order_type: Any = "buy-limit",
-                    extra_data: Any = None, **kwargs: Any):
+    def _make_order(
+        self,
+        symbol: Any,
+        size: Any,
+        price: Any = None,
+        order_type: Any = "buy-limit",
+        extra_data: Any = None,
+        **kwargs: Any,
+    ):
         path = self._params.get_rest_path("make_order")
         bm_symbol = self._params.get_symbol(symbol)
         parts = order_type.lower().replace("-", " ").split()
@@ -319,7 +336,9 @@ class BitmartRequestData(Feed):
             return [], False
         return [data], True
 
-    def _cancel_order(self, symbol: Any = None, order_id: Any = None, extra_data: Any = None, **kwargs: Any):
+    def _cancel_order(
+        self, symbol: Any = None, order_id: Any = None, extra_data: Any = None, **kwargs: Any,
+    ):
         path = self._params.get_rest_path("cancel_order")
         body = {}
         if symbol:
@@ -344,7 +363,9 @@ class BitmartRequestData(Feed):
             return [], False
         return [{"success": True}], True
 
-    def _query_order(self, symbol: Any = None, order_id: Any = None, extra_data: Any = None, **kwargs: Any):
+    def _query_order(
+        self, symbol: Any = None, order_id: Any = None, extra_data: Any = None, **kwargs: Any,
+    ):
         path = self._params.get_rest_path("query_order")
         body = {}
         if symbol:

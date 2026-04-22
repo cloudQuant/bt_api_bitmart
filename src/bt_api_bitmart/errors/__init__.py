@@ -24,7 +24,11 @@ class BitmartErrorTranslator(ErrorTranslator):
                     return UnifiedErrorCode.ORDER_REJECTED
                 if "rate" in message.lower() or "limit" in message.lower():
                     return UnifiedErrorCode.RATE_LIMIT
-                if "auth" in message.lower() or "key" in message.lower() or "signature" in message.lower():
+                if (
+                    "auth" in message.lower()
+                    or "key" in message.lower()
+                    or "signature" in message.lower()
+                ):
                     return UnifiedErrorCode.AUTH_ERROR
                 return UnifiedErrorCode.UNKNOWN_ERROR
 

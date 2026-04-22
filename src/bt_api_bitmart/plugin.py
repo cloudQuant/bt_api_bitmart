@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from bt_api_base.plugins.protocol import PluginInfo
+
 from bt_api_bitmart.exchange_data import BitmartExchangeDataSpot
 from bt_api_bitmart.feeds.live_bitmart.spot import BitmartRequestDataSpot
 
