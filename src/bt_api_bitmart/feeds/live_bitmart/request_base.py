@@ -269,7 +269,11 @@ class BitmartRequestData(Feed):
         return [], False
 
     def _get_trade_history(
-        self, symbol: Any, count: Any = 50, extra_data: Any = None, **kwargs: Any,
+        self,
+        symbol: Any,
+        count: Any = 50,
+        extra_data: Any = None,
+        **kwargs: Any,
     ):
         bm_symbol = self._params.get_symbol(symbol)
         path = self._params.get_rest_path("get_trades")
@@ -337,7 +341,11 @@ class BitmartRequestData(Feed):
         return [data], True
 
     def _cancel_order(
-        self, symbol: Any = None, order_id: Any = None, extra_data: Any = None, **kwargs: Any,
+        self,
+        symbol: Any = None,
+        order_id: Any = None,
+        extra_data: Any = None,
+        **kwargs: Any,
     ):
         path = self._params.get_rest_path("cancel_order")
         body = {}
@@ -364,7 +372,11 @@ class BitmartRequestData(Feed):
         return [{"success": True}], True
 
     def _query_order(
-        self, symbol: Any = None, order_id: Any = None, extra_data: Any = None, **kwargs: Any,
+        self,
+        symbol: Any = None,
+        order_id: Any = None,
+        extra_data: Any = None,
+        **kwargs: Any,
     ):
         path = self._params.get_rest_path("query_order")
         body = {}
