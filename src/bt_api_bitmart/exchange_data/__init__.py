@@ -1,10 +1,13 @@
+"""Module-level docstring."""
 from __future__ import annotations
 
 from bt_api_base.containers.exchanges.exchange_data import ExchangeData
 
 
 class BitmartExchangeData(ExchangeData):
+    """Class BitmartExchangeData"""
     def __init__(self) -> None:
+        """__init__ method"""
         super().__init__()
         self.exchange_name = "BITMART___SPOT"
         self.asset_type = "SPOT"
@@ -30,18 +33,22 @@ class BitmartExchangeData(ExchangeData):
         self.legal_currency = ["USDT", "USD", "BTC", "ETH", "USDC"]
 
     def get_symbol(self, symbol: str) -> str:
+        """get_symbol method"""
         return symbol.upper().replace("/", "_").replace("-", "_")
 
     def get_period(self, period: str) -> str:
+        """get_period method"""
         return self.kline_periods.get(period, period)
 
     def get_rest_path(self, request_type: str, **kwargs) -> str:
+        """get_rest_path method"""
         path = self.rest_paths.get(request_type)
         if path is None:
             raise ValueError(f"[{self.exchange_name}] Unknown rest path: {request_type}")
         return str(path)
 
     def get_wss_path(self, channel_type, symbol: str | None = None, **kwargs) -> str:
+        """get_wss_path method"""
         path = self.wss_paths.get(channel_type, "")
         if symbol and "{symbol}" in str(path):
             path = str(path).replace("{symbol}", self.get_symbol(symbol))
@@ -49,7 +56,9 @@ class BitmartExchangeData(ExchangeData):
 
 
 class BitmartExchangeDataSpot(BitmartExchangeData):
+    """Class BitmartExchangeDataSpot"""
     def __init__(self) -> None:
+        """__init__ method"""
         super().__init__()
         self.asset_type = "SPOT"
         self.exchange_name = "BITMART___SPOT"

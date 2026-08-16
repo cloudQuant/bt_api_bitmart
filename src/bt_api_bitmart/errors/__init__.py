@@ -1,11 +1,14 @@
+"""Module-level docstring."""
 from __future__ import annotations
 
 from bt_api_base.error import ErrorTranslator, UnifiedErrorCode
 
 
 class BitmartErrorTranslator(ErrorTranslator):
+    """Class BitmartErrorTranslator"""
     @staticmethod
     def translate(error_data) -> UnifiedErrorCode:
+        """translate method"""
         if error_data is None:
             return UnifiedErrorCode.NO_DATA
 

@@ -1,3 +1,4 @@
+"""Module documentation"""
 from __future__ import annotations
 
 import hashlib
@@ -14,7 +15,9 @@ from bt_api_bitmart.exchange_data import BitmartExchangeDataSpot
 
 
 class BitmartRequestData(Feed):
+    """Class BitmartRequestData"""
     def __init__(self, data_queue: Any = None, **kwargs: Any) -> None:
+        """__init__ method"""
         super().__init__(data_queue, **kwargs)
         self._api_key = kwargs.get("public_key") or kwargs.get("api_key") or ""
         self._api_secret = kwargs.get("private_key") or kwargs.get("api_secret") or ""
@@ -76,6 +79,7 @@ class BitmartRequestData(Feed):
         timeout: Any = 10,
         is_sign: Any = False,
     ) -> RequestData:
+        """request method"""
         if params is None:
             params = {}
         method, endpoint = path.split(" ", 1)
@@ -113,6 +117,7 @@ class BitmartRequestData(Feed):
         timeout: Any = 5,
         is_sign: Any = False,
     ) -> RequestData:
+        """async_request method"""
         if params is None:
             params = {}
         method, endpoint = path.split(" ", 1)

@@ -20,6 +20,7 @@ class TestBitmartExchangeData:
         assert exchange.exchange_name == "BITMART___SPOT"
 
     def test_symbol_and_period_mapping(self):
+        """test_symbol_and_period_mapping method"""
         exchange = BitmartExchangeData()
 
         assert exchange.get_symbol("btc/usdt") == "BTC_USDT"
@@ -28,11 +29,13 @@ class TestBitmartExchangeData:
         assert exchange.get_period("custom") == "custom"
 
     def test_get_rest_path_raises_for_unknown_key(self):
+        """test_get_rest_path_raises_for_unknown_key method"""
         exchange = BitmartExchangeData()
         with pytest.raises(ValueError):
             exchange.get_rest_path("unknown")
 
     def test_get_wss_path_substitutes_symbol(self):
+        """test_get_wss_path_substitutes_symbol method"""
         exchange = BitmartExchangeData()
         exchange.wss_paths = {"ticker": "spot/ticker:{symbol}"}
 
@@ -40,7 +43,9 @@ class TestBitmartExchangeData:
 
 
 class TestBitmartExchangeDataSpot:
+    """Class TestBitmartExchangeDataSpot"""
     def test_spot_defaults(self):
+        """test_spot_defaults method"""
         exchange = BitmartExchangeDataSpot()
 
         assert exchange.asset_type == "SPOT"
